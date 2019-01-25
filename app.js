@@ -1,34 +1,7 @@
 console.log("Starting app");
 
-const yargs = require("yargs");
-
 const notes = require("./notes");
-
-const titleOptions = {
-  describe: "Title of note",
-  demand: true,
-  alias: "t"
-};
-
-const bodyOptions = {
-  describe: "Title of note",
-  demand: true,
-  alias: "t"
-};
-
-const argv = yargs
-  .command("add", "Add a new note", {
-    title: titleOptions,
-    body: bodyOptions
-  })
-  .command("list", "List all notes")
-  .command("read", "Read a note", {
-    title: titleOptions
-  })
-  .command("remove", "Remove a note", {
-    title: titleOptions
-  })
-  .help().argv;
+const argv = require("./yargsConfig");
 
 const command = argv._[0];
 
@@ -46,7 +19,6 @@ switch (command) {
   }
   case "list": {
     const allNotes = notes.getAll();
-
     allNotes.forEach(notes.logNote);
     break;
   }
