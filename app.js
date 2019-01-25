@@ -17,18 +17,27 @@ switch (command) {
     const note = notes.addNote(argv.title, argv.body);
 
     if (note) {
-      console.log(`${note.title} -- Saved!`);
+      console.log("---");
+      console.log("Note created!");
+      notes.logNote(note);
     } else {
       console.log("Nothing saved -- error");
     }
     break;
   }
   case "list": {
-    notes.getAll();
+    const allNotes = notes.getAll();
+
+    allNotes.forEach(notes.logNote);
     break;
   }
   case "read": {
-    notes.getNote(argv.title);
+    const note = notes.getNote(argv.title);
+    if (note) {
+      console.log("---");
+      console.log("Note found!");
+      notes.logNote(note);
+    }
     break;
   }
   case "remove": {

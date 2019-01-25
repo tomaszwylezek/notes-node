@@ -32,12 +32,12 @@ const addNote = (title, body) => {
     return note;
   }
 };
-const getAll = () => {
-  console.log("Getting all notes");
-};
+const getAll = () => fetchNotes();
 
 const getNote = title => {
-  console.log("Getting note", title);
+  const notes = fetchNotes();
+
+  return notes.find(note => note.title === title);
 };
 
 const removeNote = title => {
@@ -50,9 +50,15 @@ const removeNote = title => {
   return notes.length !== filteredNotes.length;
 };
 
+const logNote = note => {
+  console.log(`Note title: ${note.title}`);
+  console.log(`Note body: ${note.body}`);
+};
+
 module.exports = {
   addNote,
   getAll,
   getNote,
-  removeNote
+  removeNote,
+  logNote
 };
