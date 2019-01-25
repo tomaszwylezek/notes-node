@@ -23,12 +23,22 @@ switch (command) {
     }
     break;
   }
+  case "list": {
+    notes.getAll();
+    break;
+  }
   case "read": {
     notes.getNote(argv.title);
     break;
   }
   case "remove": {
-    notes.removeNote(argv.title);
+    const noteRemoved = notes.removeNote(argv.title);
+
+    const message = noteRemoved
+      ? `Note with title ${argv.title} has been removed`
+      : "There is no note with that title";
+
+    console.log(message);
     break;
   }
   default:

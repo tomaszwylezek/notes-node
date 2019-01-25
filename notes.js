@@ -18,7 +18,7 @@ const saveNotes = notes => {
 const addNote = (title, body) => {
   console.log("Adding note", title, body);
 
-  let notes = fetchNotes();
+  const notes = fetchNotes();
   const note = {
     title,
     body
@@ -35,11 +35,19 @@ const addNote = (title, body) => {
 const getAll = () => {
   console.log("Getting all notes");
 };
+
 const getNote = title => {
   console.log("Getting note", title);
 };
+
 const removeNote = title => {
-  console.log("Removing note", title);
+  const notes = fetchNotes();
+
+  const filteredNotes = notes.filter(note => note.title !== title);
+
+  saveNotes(filteredNotes);
+
+  return notes.length !== filteredNotes.length;
 };
 
 module.exports = {
